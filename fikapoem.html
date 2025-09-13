@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sekedar Suara Hati</title>
+    <style>
+        /* Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap');
+
+        /* Reset & Base */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f4f1e8 0%, #e6dfd3 100%);
+            color: #4a3f35;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            color: #7a6a53;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #a0885c;
+        }
+
+        /* Header */
+        .header {
+            background-color: #d4c2a8;
+            border-bottom: 3px solid #a0885c;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+            font-family: 'Playfair Display', serif;
+        }
+        .header h1 {
+            font-size: 3rem;
+            color: #6b5841;
+            margin: 0;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+        }
+        .nav {
+            margin-top: 15px;
+        }
+        .nav a {
+            margin: 0 20px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 30px 25px;
+            background-color: #faf6f0;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(160, 140, 100, 0.15);
+            border: 1px solid #d4c2a8;
+        }
+
+        /* Section Titles */
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #7a6a53;
+            border-bottom: 2px solid #a0885c;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+        }
+
+        /* Image */
+        .image-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 15px;
+            border: 3px solid #a0885c;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            filter: sepia(0.5) contrast(0.9);
+            transition: transform 0.4s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.03);
+            filter: sepia(0.3) contrast(1);
+        }
+
+        /* About Text */
+        #about p {
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+            text-align: justify;
+            text-indent: 2em;
+            color: #5a4a3f;
+        }
+
+        /* Poem List */
+        .poem-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .poem-list li {
+            background: #e9e2d0;
+            border: 1.5px solid #c9bfa8;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 18px 22px;
+            cursor: pointer;
+            box-shadow: 2px 2px 6px rgba(160, 140, 100, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #6b5841;
+            letter-spacing: 0.8px;
+            user-select: none;
+            position: relative;
+        }
+        .poem-list li:hover {
+            background-color: #d9d1b8;
+            box-shadow: 4px 4px 12px rgba(160, 140, 100, 0.35);
+        }
+        .poem-list li::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #a0885c;
+            transition: transform 0.3s ease;
+        }
+        .poem-list li.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        /* Poem Content */
+        .poem-content {
+            display: none;
+            margin-top: 15px;
+            padding: 15px 20px;
+            background-color: #f4f1e8;
+            border-left: 5px solid #a0885c;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            color: #5a4a3f;
+            white-space: pre-line;
+            line-height: 1.5;
+            border-radius: 0 10px 10px 0;
+            box-shadow: inset 2px 2px 6px rgba(160, 140, 100, 0.1);
+            user-select: text;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #d4c2a8;
+            border-top: 3px solid #a0885c;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto;
+            color: #5a4a3f;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .container {
+                margin: 20px 15px;
+                padding: 20px 15px;
+            }
+            .nav a {
+                margin: 0 12px;
+                font-size: 1rem;
+            }
+            .poem-list li {
+                font-size: 1.05rem;
+                padding: 15px 18px;
+            }
+            .poem-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Suara Hati Yang Tak Menjerit</h1>
+        <nav class="nav">
+            <a href="#about">Tentang Saya</a>
+            <a href="#poems">Puisiku</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" class="container section">
+            <div class="image-container">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/47432ebc-b9a3-4964-bb48-bd536df2f2fc.png" alt="Potret penyair vintage dengan cahaya lembut" />
+            </div>
+            <h2>Tentang Saya</h2>
+            <p>Halo, pembaca yang terhormat. Saya adalah <strong>Fika</strong>, seorang penulis amatir yang baru belajar keluar dari zona nyaman, penuh semangat dan menemukan ketenangan dalam ritme kata-kata dan bisikan hati. Lahir di sebuah kota yang dikenal dengan julukan <em>"KOTA ASRI"</em>, hidup saya menjadi tapestri rasa ingin tahu dan introspeksi. Sebagai pecinta estetika vintage, saya menghargai pesona abadi perpustakaan dunia lama, tinta pudar di atas perkamen, dan aroma samar kertas tua.</p>
+            <p>Menjadi diri sendiri adalah tantangan bagi saya, karena setiap usaha untuk menjadi <em>"ASLI"</em> selalu ada cobaannya. Namun, melalui beberapa tulisan ini, saya mencoba mengutarakan ketika saya benar-benar menjadi diri saya sendiri.</p>
+            <p>Perjalanan saya dimulai dengan bait-bait yang ditulis coret-coret pada buku catatan kusut, berkembang menjadi saluran kreatif untuk pemikiran saya tentang cinta, alam, kehilangan, dan keindahan yang singgah dari eksistensi. Blog ini adalah tempat pribadi saya, di mana saya berbagi sekilas jiwa saya melalui puisi dan refleksi tentang keajaiban sehari-hari.</p>
+            <p>Selain menulis, saya menikmati jalan-jalan panjang di alam terbuka, mencintai langit dengan berbagai bentuk dan warnanya, segelas matcha dan musik klasik adalah favorit saya. Terima kasih telah melangkah ke dunia saya; saya harap kata-kata saya bergema dengan Anda sekuat dengan saya.</p>
+        </section>
+
+        <section id="poems" class="container section">
+            <h2>Puisiku</h2>
+            <p>Di sini terdapat kumpulan puisi asli saya, masing-masing ditulis dalam momen inspirasi. Klik pada judul untuk membuka puisinya.</p>
+            <ul class="poem-list" role="list">
+                <li onclick="togglePoem(1)" tabindex="0" onkeypress="if(event.key==='Enter'){togglePoem(1);}">
+                    Tugasmu
+                    <div id="poem1" class="poem-content" aria-hidden="true">
+                        Tak ada yang perlu<br />
+                        disesali<br />
+                        Jalan takdirmu sudah<br />
+                        begitu<br />
+                        Tugasmu.....<br />
+                        Hanya perlu merubah<br />
+                        nasib
+                    </div>
+                </li>
+                <li onclick="togglePoem(2)" tabindex="0" onkeypress="if(event.key==='Enter'){togglePoem(2);}">
+                    Tak Pasti
+                    <div id="poem2" class="poem-content" aria-hidden="true">
+                        Karna kamu dan aku<br />
+                        adalah waktu<br />
+                        Cuma butuh menunggu<br />
+                        kapan untuk bertemu
+                    </div>
+                </li>
+                <li onclick="togglePoem(3)" tabindex="0" onkeypress="if(event.key==='Enter'){togglePoem(3);}">
+                    Ikuti
+                    <div id="poem3" class="poem-content" aria-hidden="true">
+                        Ikuti kata hati<br />
+                        kemana ia ingin pergi<br />
+                        selama ia tak menyakiti<br />
+                        engkau bebas berekspresi<br /><br />
+                        Patah semalam jangan diulang<br />
+                        cukup dikenang<br />
+                        jadikan ia pelajaran<br /><br />
+                        Tak semua yang kita rencanakan<br />
+                        berjalan dengan benar-benar<br />
+                        tapi percayalah...<br />
+                        semua hal baik<br />
+                        adalah rencana TUHAN
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Terima kasih telah berkunjung. Semua konten &copy; 2018 oleh Fika Hamasah. Dibuat dengan sentuhan vintage.</p>
+    </footer>
+
+    <script>
+        function togglePoem(id) {
+            const poem = document.getElementById('poem' + id);
+            const listItem = poem.parentElement;
+            const isVisible = poem.style.display === 'block';
+
+            // Hide all poems
+            document.querySelectorAll('.poem-content').forEach(p => {
+                p.style.display = 'none';
+                p.setAttribute('aria-hidden', 'true');
+            });
+            document.querySelectorAll('.poem-list li').forEach(li => {
+                li.classList.remove('active');
+            });
+
+            // Toggle current poem
+            if (!isVisible) {
+                poem.style.display = 'block';
+                poem.setAttribute('aria-hidden', 'false');
+                listItem.classList.add('active');
+                // Scroll into view smoothly
+                listItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>
